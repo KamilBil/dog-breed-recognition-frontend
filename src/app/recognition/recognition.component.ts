@@ -5,13 +5,13 @@ import { ImageModule } from 'primeng/image';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-photo-upload',
-  templateUrl: './photo-upload.component.html',
-  styleUrls: ['./photo-upload.component.scss'],
+  selector: 'app-recognition',
+  templateUrl: './recognition.component.html',
+  styleUrls: ['./recognition.component.scss'],
   standalone: true,
   imports: [HttpClientModule, FileUploadModule, ImageModule, CommonModule],
 })
-export class PhotoUploadComponent {
+export class RecognitionComponent {
   uploadedFiles: any[] = [];
   imageUrl: string | undefined = undefined;
   breed: string = '';

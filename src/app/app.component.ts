@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { PhotoUploadComponent } from './photo-upload/photo-upload.component';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RecognitionComponent } from './recognition/recognition.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PhotoUploadComponent],
+  imports: [RouterModule, NavbarComponent, RecognitionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

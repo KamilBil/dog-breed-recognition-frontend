@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhotoUploadComponent } from './photo-upload.component';
+import { RecognitionComponent } from './recognition.component';
 
-describe('PhotoUploadComponent', () => {
-  let component: PhotoUploadComponent;
-  let fixture: ComponentFixture<PhotoUploadComponent>;
+describe('RecognitionComponent', () => {
+  let component: RecognitionComponent;
+  let fixture: ComponentFixture<RecognitionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhotoUploadComponent]
+      imports: [RecognitionComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PhotoUploadComponent);
+    fixture = TestBed.createComponent(RecognitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
