@@ -5,6 +5,14 @@
     margin: 1vw;
   }
 
+.flex-row {
+  flex-direction: row;
+}
+
+.action-button{
+  margin: 1vw;
+}
+
 .dog-image ::ng-deep img {
     max-width: 80vw;
     max-height: 40vh;
