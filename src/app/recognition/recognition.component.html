@@ -1,17 +1,16 @@
-<div class="upload-container">
+<div class="flex-container upload-container">
+  <h2>Recognition from a file or photo</h2>
   <p-fileUpload
+    mode="basic"
+    chooseLabel="Upload file"
+    chooseIcon="pi pi-upload"
     name="file"
     url="https://dog-breed-recognition-backend.kamilbil.pl/breed-detection"
     (onUpload)="onUpload($event)"
     accept="image/*"
     maxFileSize="1000000"
-  >
-    <ng-template pTemplate="content">
-      <ul *ngIf="uploadedFiles.length">
-        <li *ngFor="let file of uploadedFiles">{{ file.name }}</li>
-      </ul>
-    </ng-template>
-  </p-fileUpload>
+    [auto]="true"
+  />
   <div class="flex-container" *ngIf="breed">
     <p-image class="dog-image" [src]="imageUrl"></p-image>
     Recognized breed: <b>{{ breed }}</b>
