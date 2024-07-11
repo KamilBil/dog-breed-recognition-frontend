@@ -15,10 +15,15 @@
     />
     <p-button
       icon="pi pi-camera"
-      label="Make photo"
+      label="{{ cameraPreview ? 'Disable camera' : 'Enable camera' }}"
       class="action-button"
+      (onClick)="openCameraPreview($event)"
     ></p-button>
   </div>
+  <div class="flex-container" *ngIf="cameraPreview">
+    <app-camera (pictureTaken)="madePhoto($event)"/>
+  </div>
+
   <div class="flex-container" *ngIf="breed">
     <p-image class="dog-image" [src]="imageUrl"></p-image>
     Recognized breed: <b>{{ breed }}</b>

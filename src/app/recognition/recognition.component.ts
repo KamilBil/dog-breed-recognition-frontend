@@ -5,6 +5,10 @@ import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { CommonModule } from '@angular/common';
 import { WikipediaService } from '../wikipedia.service';
+import { CameraComponent } from '../camera/camera.component';
+import { WebcamImage } from 'ngx-webcam';
+import { BreedRecognitionService } from '../breed-recognition.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-recognition',
@@ -17,6 +21,7 @@ import { WikipediaService } from '../wikipedia.service';
     ImageModule,
     CommonModule,
     CardModule,
+    CameraComponent,
   ],
 })
 export class RecognitionComponent {
@@ -24,18 +29,48 @@ export class RecognitionComponent {
   imageUrl: string | undefined = undefined;
   breed: string = '';
   wikiInfo: string = '';
+  cameraPreview = false;
 
   constructor(
     private http: HttpClient,
-    private wikipediaService: WikipediaService
+    private wikipediaService: WikipediaService,
+    private breedRecognitionService: BreedRecognitionService
   ) {}
 
-  onUpload(event: any) {
-    this.imageUrl = event.files[0].objectURL;
-    this.breed = event.originalEvent.body.breed;
+  openCameraPreview(event: any) {
+    this.cameraPreview = !this.cameraPreview;
+  }
+
+  srcToFile(src: string, fileName: string, mimeType: string) {
+    return fetch(src)
+      .then(function (res) {
+        return res.arrayBuffer();
+      })
+      .then(function (buf) {
+        return new File([buf], fileName, { type: mimeType });
+      });
+  }
+
+  madePhoto(img: WebcamImage) {
+    this.srcToFile(img.imageAsDataUrl, 'hello.txt', 'text/plain').then(
+      (file) => {
+        this.cameraPreview = false;
+        this.imageUrl = img.imageAsDataUrl;
+        this.sendRecognitionRequest(file);
+      }
+    );
+  }
+
+  sendRecognitionRequest(img: File) {
+    this.breedRecognitionService.recognise_breed(img).subscribe((data: any) => {
+      this.breed = data.breed;
+      this.getWikiInfo(this.breed);
+    });
+  }
+
+  getWikiInfo(breed: string) {
     this.wikipediaService.search(this.breed).subscribe((data) => {
       if (data.length > 0) {
-        console.log(data);
         for (const element of data) {
           if (
             element.extract.includes('dog') &&
@@ -47,5 +82,11 @@ export class RecognitionComponent {
         }
       }
     });
+  }
+
+  onUpload(event: any) {
+    this.imageUrl = event.files[0].objectURL;
+    this.breed = event.originalEvent.body.breed;
+    this.getWikiInfo(this.breed);
   }
 }
