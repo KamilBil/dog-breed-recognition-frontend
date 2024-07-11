@@ -4,11 +4,11 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
 import { CommonModule } from '@angular/common';
-import { WikipediaService } from '../wikipedia.service';
 import { CameraComponent } from '../camera/camera.component';
 import { WebcamImage } from 'ngx-webcam';
-import { BreedRecognitionService } from '../breed-recognition.service';
+import { BreedRecognitionService } from '../services/breed-recognition/breed-recognition.service';
 import { tap } from 'rxjs';
+import { WikipediaService } from '../services/wikipedia/wikipedia.service';
 
 @Component({
   selector: 'app-recognition',
