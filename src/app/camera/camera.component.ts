@@ -1,6 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WebcamImage, WebcamInitError, WebcamModule, WebcamUtil } from 'ngx-webcam';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  HostListener,
+} from '@angular/core';
+import {
+  WebcamImage,
+  WebcamInitError,
+  WebcamModule,
+  WebcamUtil,
+} from 'ngx-webcam';
 import { ButtonModule } from 'primeng/button';
 import { Observable, Subject } from 'rxjs';
 
@@ -18,14 +29,19 @@ export class CameraComponent implements OnInit {
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string | null = null;
-  public videoOptions: MediaTrackConstraints = {
-  };
+  public videoOptions: MediaTrackConstraints = {};
   public errors: WebcamInitError[] = [];
+  public previewWidth: number = 100;
+  public previewHeight: number = 100;
 
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<
     boolean | string
   >();
+
+  constructor() {
+    this.onResize();
+  }
 
   public ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs().then(
@@ -33,6 +49,13 @@ export class CameraComponent implements OnInit {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       }
     );
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?: Event) {
+    const win = !!event ? (event.target as Window) : window;
+    this.previewWidth = win.innerWidth*0.9;
+    this.previewHeight = win.innerHeight*0.5;
   }
 
   public triggerSnapshot(): void {
