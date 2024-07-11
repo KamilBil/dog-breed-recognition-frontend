@@ -1,7 +1,15 @@
-<h1>Dog breed recognizer</h1>
+<div class="flex-container">
+  <h1>Dog breed recognizer</h1>
 
-<p>To recognise your dog's breed, submit a photo in any format and size.</p>
+  <p>
+    To recognise your dog's breed, submit a photo in any format and size. The
+    model was trained on
+    <a href="http://vision.stanford.edu/aditya86/ImageNetDogs/"
+      >Standford Dogs Dataset</a
+    >.
+  </p>
 
-<p><b>Info:</b> Your photo won't be stored.</p>
+  <p><b>Info:</b> Your photo won't be stored.</p>
 
-<p-button label="Go to recognition!" [routerLink]="['/recognition']" />
+  <p-button label="Go to recognition!" [routerLink]="['/recognition']" />
+</div>
