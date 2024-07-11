@@ -17,9 +17,11 @@ export class NavbarComponent {
       { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/' },
       {
         label: 'Recognition',
-        icon: '',
+        icon: 'pi pi-fw pi-cloud-upload',
         routerLink: '/recognition',
       },
+      { label: 'Breeds', icon: 'pi pi-fw pi-database', routerLink: '/breeds'},
+      // { label: 'Statistics', icon: 'pi pi-fw pi-chart-line' },
     ];
   }
 }
