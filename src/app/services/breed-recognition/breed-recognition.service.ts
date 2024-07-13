@@ -19,4 +19,11 @@ export class BreedRecognitionService {
   breeds_list(): Observable<any> {
     return this.http.get(this.url + '/breeds');
   }
+
+  dog_image(breedName: string): Observable<any> {
+    return this.http.get(this.url + '/image', {
+      params: { breed_name: breedName },
+      responseType: 'blob',
+    });
+  }
 }
