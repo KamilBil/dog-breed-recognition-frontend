@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreedRecognitionService {
-  private url = 'https://dog-breed-recognition-backend.kamilbil.pl';
+  private url = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
