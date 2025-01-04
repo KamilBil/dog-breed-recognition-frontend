@@ -31,9 +31,8 @@ export class RecognitionComponent {
   cameraPreview = false;
 
   constructor(
-    private http: HttpClient,
     private wikipediaService: WikipediaService,
-    private breedRecognitionService: BreedRecognitionService
+    private breedRecognitionService: BreedRecognitionService,
   ) {}
 
   openCameraPreview(event: any) {
@@ -56,7 +55,7 @@ export class RecognitionComponent {
         this.cameraPreview = false;
         this.imageUrl = img.imageAsDataUrl;
         this.sendRecognitionRequest(file);
-      }
+      },
     );
   }
 
@@ -84,7 +83,9 @@ export class RecognitionComponent {
   }
 
   onUpload(event: any) {
-    this.imageUrl = event.files[0].objectURL;
+    const file = event.files[0];
+    this.sendRecognitionRequest(file);
+    this.imageUrl = file.objectURL;
     this.breed = event.originalEvent.body.breed;
     this.getWikiInfo(this.breed);
   }

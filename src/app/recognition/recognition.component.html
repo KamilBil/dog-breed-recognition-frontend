@@ -6,8 +6,9 @@
       chooseLabel="Upload file"
       chooseIcon="pi pi-upload"
       name="file"
-      url="https://dog-breed-recognition-backend.kamilbil.pl/breed-detection"
-      (onUpload)="onUpload($event)"
+      customUpload="true"
+      url="#"
+      (uploadHandler)="onUpload($event)"
       accept="image/*"
       maxFileSize="1000000"
       [auto]="true"
@@ -21,7 +22,7 @@
     ></p-button>
   </div>
   <div class="flex-container" *ngIf="cameraPreview">
-    <app-camera (pictureTaken)="madePhoto($event)"/>
+    <app-camera (pictureTaken)="madePhoto($event)" />
   </div>
 
   <div class="flex-container" *ngIf="breed">

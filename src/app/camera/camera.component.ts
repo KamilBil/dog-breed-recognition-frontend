@@ -47,15 +47,15 @@ export class CameraComponent implements OnInit {
     WebcamUtil.getAvailableVideoInputs().then(
       (mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-      }
+      },
     );
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event?: Event) {
     const win = !!event ? (event.target as Window) : window;
-    this.previewWidth = win.innerWidth*0.9;
-    this.previewHeight = win.innerHeight*0.5;
+    this.previewWidth = win.innerWidth * 0.9;
+    this.previewHeight = win.innerHeight * 0.5;
   }
 
   public triggerSnapshot(): void {

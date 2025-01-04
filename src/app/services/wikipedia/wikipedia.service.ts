@@ -38,11 +38,11 @@ export class WikipediaService {
       origin: '*',
     };
 
-    return this.http
-      .get<WikipediaResponse>(this.apiUrl, { params })
-      .pipe(map((response) => {
+    return this.http.get<WikipediaResponse>(this.apiUrl, { params }).pipe(
+      map((response) => {
         const pages = response.query.pages;
-        return Object.keys(pages).map(key => pages[key]);
-      }));
+        return Object.keys(pages).map((key) => pages[key]);
+      }),
+    );
   }
 }
