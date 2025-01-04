@@ -32,7 +32,7 @@ export class RecognitionComponent {
 
   constructor(
     private wikipediaService: WikipediaService,
-    private breedRecognitionService: BreedRecognitionService
+    private breedRecognitionService: BreedRecognitionService,
   ) {}
 
   openCameraPreview(event: any) {
@@ -55,7 +55,7 @@ export class RecognitionComponent {
         this.cameraPreview = false;
         this.imageUrl = img.imageAsDataUrl;
         this.sendRecognitionRequest(file);
-      }
+      },
     );
   }
 

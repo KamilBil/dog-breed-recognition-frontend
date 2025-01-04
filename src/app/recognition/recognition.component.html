@@ -22,7 +22,7 @@
     ></p-button>
   </div>
   <div class="flex-container" *ngIf="cameraPreview">
-    <app-camera (pictureTaken)="madePhoto($event)"/>
+    <app-camera (pictureTaken)="madePhoto($event)" />
   </div>
 
   <div class="flex-container" *ngIf="breed">

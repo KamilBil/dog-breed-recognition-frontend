@@ -22,7 +22,7 @@ export class BreedsComponent implements OnInit {
   public filteredBreeds: BreedRow[] = [];
   constructor(
     private breedRecognitionService: BreedRecognitionService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class BreedsComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     this.filteredBreeds = this.tableData.filter((breed) =>
-      breed.name.toLowerCase().includes(filterValue)
+      breed.name.toLowerCase().includes(filterValue),
     );
   }
 }

@@ -8,10 +8,9 @@ describe('CameraComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CameraComponent]
-    })
-    .compileComponents();
-    
+      imports: [CameraComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CameraComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

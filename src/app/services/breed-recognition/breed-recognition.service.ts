@@ -27,4 +27,10 @@ export class BreedRecognitionService {
       responseType: 'blob',
     });
   }
+
+  auth_google(code: string): Observable<any> {
+    return this.http.get(this.url + '/auth/google', {
+      params: { code: code },
+    });
+  }
 }
