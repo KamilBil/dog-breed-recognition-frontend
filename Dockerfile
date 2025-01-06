@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm install
 COPY ./ /app/
+ARG BUILD_CONFIGURATION=production
 RUN npm run build -- --configuration=${BUILD_CONFIGURATION} --output-path=./dist/out
 
 FROM nginx:alpine
