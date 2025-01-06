@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_CONFIGURATION: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,3 +27,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/dog-breed-recognition-frontend:test
+          build-args: |
+            BUILD_CONFIGURATION=${{ env.BUILD_CONFIGURATION }}
